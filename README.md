@@ -1,4 +1,17 @@
-# CaliforniaTravel
+# 🌴 California Trip
+
+A personal travel itinerary app for a multi-city road trip through California (San Francisco, Los Angeles, and San Diego). Built with Angular and Firebase, it lets you browse a day-by-day schedule for each city, track visited spots, check weather, and explore all stops on an interactive map powered by the Google Maps API.
+
+**Trip dates:** Feb 28 – Mar 10
+
+## Screenshots
+
+<p float="left">
+  <img src="docs/screenshot-itinerary.png" width="45%" alt="Itinerary view" />
+  <img src="docs/screenshot-map.png" width="45%" alt="Map view" />
+</p>
+
+---
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
 
