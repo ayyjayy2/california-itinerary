@@ -1,0 +1,31 @@
+<div class="event-row" [attr.data-city]="cityId">
+  <div class="timeline-col">
+    <div class="dot"></div>
+    <div class="line" *ngIf="!isLast"></div>
+  </div>
+  <div class="event-body">
+    <div class="event-time">{{ event.time }}</div>
+    <div class="event-card" [class.visited]="event.visited" (click)="onCardClick()">
+      <span class="event-emoji">{{ event.emoji }}</span>
+      <div class="event-info">
+        <div class="event-title">{{ event.title }}</div>
+        <div class="event-note" *ngIf="event.note">{{ event.note }}</div>
+        <div class="event-location" *ngIf="event.location">
+          📍 {{ event.location.name }}
+        </div>
+        <div class="event-actions">
+          <button class="delete-btn"
+                  (click)="$event.stopPropagation(); onDeleteConfirm()"
+                  aria-label="Delete">🗑</button>
+          <button class="visited-btn"
+                  [class.is-visited]="event.visited"
+                  (click)="$event.stopPropagation(); onToggleVisited()">
+            <span class="visited-check">✓</span>
+            <span class="visited-label">visited</span>
+          </button>
+        </div>
+      </div>
+      <div class="edit-hint">›</div>
+    </div>
+  </div>
+</div>

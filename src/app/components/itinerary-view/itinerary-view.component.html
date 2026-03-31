@@ -1,0 +1,40 @@
+<div class="itinerary-outer" [attr.data-city]="cityId">
+
+  <!-- Scrollable content area -->
+  <div class="scroll-content">
+    <div class="day-header">
+      <div class="day-info">
+        <div class="day-label">{{ day.label }}</div>
+        <div class="day-date">{{ day.date }}</div>
+      </div>
+      <app-weather-badge [dateISO]="day.dateISO"></app-weather-badge>
+    </div>
+
+    <div class="timeline">
+      <app-event-card
+        *ngFor="let event of day.events; let i = index; let last = last"
+        [event]="event"
+        [index]="i"
+        [cityId]="cityId"
+        [isLast]="last"
+        (edit)="openEdit($event)"
+        (delete)="onDelete($event)"
+        (toggleVisited)="onToggleVisited($event)">
+      </app-event-card>
+    </div>
+
+    <div class="timeline-end"></div>
+  </div>
+
+  <!-- FAB: absolute so it's always visible above the scroll content, never clipped by nav -->
+  <button class="fab" (click)="openAdd()" aria-label="Add event">+</button>
+
+  <app-event-modal
+    *ngIf="showModal()"
+    [event]="editingEvent()"
+    [cityId]="cityId"
+    (save)="onSave($event)"
+    (delete)="onDelete($event)"
+    (close)="closeModal()">
+  </app-event-modal>
+</div>

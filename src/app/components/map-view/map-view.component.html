@@ -1,0 +1,12 @@
+<div class="map-wrapper">
+  <div #mapContainer class="map-container"></div>
+  <div class="map-legend">
+    <div class="legend-item" *ngFor="let event of mappedEvents">
+      <div class="legend-num" [style.background]="getCityColor(service.selectedCityId())">{{ event.mapNum }}</div>
+      <span class="legend-title">{{ event.emoji }} {{ event.title }}</span>
+    </div>
+    <div class="legend-empty" *ngIf="mappedEvents.length === 0">
+      No mapped locations for this day
+    </div>
+  </div>
+</div>

@@ -1,0 +1,11 @@
+<nav class="city-tabs">
+  <button
+    *ngFor="let city of cities"
+    class="tab-btn"
+    [class.active]="selectedId === city.id"
+    [attr.data-city]="city.id"
+    (click)="select(city.id)">
+    <span class="tab-emoji">{{ city.emoji }}</span>
+    <span class="tab-label">{{ city.shortName }}</span>
+  </button>
+</nav>

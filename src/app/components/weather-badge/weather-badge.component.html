@@ -1,0 +1,13 @@
+<div class="weather-badge" *ngIf="weather; else loadingTpl">
+  <span class="wx-emoji">{{ emoji }}</span>
+  <div class="wx-details">
+    <span class="wx-temps">{{ weather.high }}° <span class="wx-low">/ {{ weather.low }}°</span></span>
+    <span class="wx-desc">{{ desc }}<span class="wx-rain" *ngIf="weather.precip > 10"> · {{ weather.precip }}% rain</span></span>
+  </div>
+</div>
+
+<ng-template #loadingTpl>
+  <div class="weather-badge loading" *ngIf="loading">
+    <span class="wx-skeleton">—° / —°</span>
+  </div>
+</ng-template>

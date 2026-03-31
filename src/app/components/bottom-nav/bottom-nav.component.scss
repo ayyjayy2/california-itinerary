@@ -1,0 +1,35 @@
+.bottom-nav {
+  display: flex;
+  flex-shrink: 0;   // never compress — always fully visible
+  background: #1a1a2e;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  // Push content up above the home indicator / gesture bar
+  padding-bottom: env(safe-area-inset-bottom, 0px);
+
+  &[data-city="travel"] { --nav-color: #8B5CF6; }
+  &[data-city="sf"]     { --nav-color: #F59E0B; }
+  &[data-city="la"]     { --nav-color: #F43F5E; }
+  &[data-city="sd"]     { --nav-color: #0EA5E9; }
+}
+
+.nav-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 12px 0 10px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: rgba(255,255,255,0.4);
+  transition: color 0.2s;
+  // Ensure touch target is large enough
+  min-height: 56px;
+
+  &.active { color: var(--nav-color, #F59E0B); }
+  &:active { opacity: 0.7; }
+}
+
+.nav-icon  { font-size: 24px; line-height: 1; }
+.nav-label { font-size: 10px; font-weight: 600; letter-spacing: 0.5px; }

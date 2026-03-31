@@ -1,0 +1,48 @@
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  height: 100%;
+  height: 100dvh;
+  overflow: hidden;
+  // Prevent iOS bounce/overscroll on the root
+  overscroll-behavior: none;
+}
+
+body {
+  height: 100%;
+  background: #0a0a1a;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Segoe UI', Roboto, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  color: #fff;
+  overflow: hidden;
+  // Prevent tap highlight flash on mobile
+  -webkit-tap-highlight-color: transparent;
+  overscroll-behavior: none;
+}
+
+app-root {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* City color themes */
+.city-sf { --city-color: #F59E0B; --city-dark: #D97706; }
+.city-la { --city-color: #F43F5E; --city-dark: #E11D48; }
+.city-sd { --city-color: #0EA5E9; --city-dark: #0284C7; }
+.city-travel { --city-color: #8B5CF6; --city-dark: #7C3AED; }
+
+/* Leaflet overrides */
+.leaflet-container { background: #1a2030; }
+.leaflet-popup-content-wrapper {
+  background: #1e293b;
+  color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.5);
+}
+.leaflet-popup-tip { background: #1e293b; }
+.leaflet-popup-content { font-size: 13px; line-height: 1.5; }

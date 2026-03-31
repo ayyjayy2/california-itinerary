@@ -1,0 +1,10 @@
+<nav class="bottom-nav" [attr.data-city]="cityId">
+  <button class="nav-btn" [class.active]="activeTab === 'itinerary'" (click)="tabChange.emit('itinerary')">
+    <span class="nav-icon">📋</span>
+    <span class="nav-label">Itinerary</span>
+  </button>
+  <button class="nav-btn" [class.active]="activeTab === 'map'" (click)="tabChange.emit('map')">
+    <span class="nav-icon">🗺️</span>
+    <span class="nav-label">Map</span>
+  </button>
+</nav>

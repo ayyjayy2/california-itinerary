@@ -1,0 +1,279 @@
+.modal-backdrop {
+  position: fixed;
+  inset: 0;
+  // Pad the bottom so the sheet slides up above the bottom nav (~58px) + home indicator
+  padding-bottom: calc(58px + env(safe-area-inset-bottom, 0px));
+  background: rgba(0,0,0,0.6);
+  z-index: 100;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+.modal-sheet {
+  width: 100%;
+  max-width: 390px;
+  background: #1a1a2e;
+  border-radius: 20px 20px 0 0;
+  padding: 0;
+  // Cap height so there's always room to see header + actions
+  max-height: min(85dvh, calc(100dvh - 58px - env(safe-area-inset-bottom, 0px)));
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  animation: slideUp 0.3s ease;
+
+  &[data-city="travel"] { --accent: #8B5CF6; }
+  &[data-city="sf"] { --accent: #F59E0B; }
+  &[data-city="la"] { --accent: #F43F5E; }
+  &[data-city="sd"] { --accent: #0EA5E9; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(100%); }
+  to { transform: translateY(0); }
+}
+
+.sheet-handle {
+  width: 36px;
+  height: 4px;
+  background: rgba(255,255,255,0.2);
+  border-radius: 2px;
+  margin: 12px auto 0;
+  flex-shrink: 0;
+}
+
+.sheet-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 16px 20px 12px;
+  flex-shrink: 0;
+
+  h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #fff;
+    margin: 0;
+  }
+}
+
+.close-btn {
+  background: rgba(255,255,255,0.1);
+  border: none;
+  color: #fff;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.form-body {
+  overflow-y: scroll;
+  -webkit-overflow-scrolling: touch;
+  padding: 0 20px 16px;
+  flex: 1 1 0;   // 1 1 0 lets it shrink below content height, enabling scroll
+  min-height: 0;
+}
+
+.field-row {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  margin-bottom: 14px;
+
+  label {
+    font-size: 11px;
+    font-weight: 600;
+    color: rgba(255,255,255,0.5);
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+  }
+
+  input, textarea {
+    background: rgba(255,255,255,0.08);
+    border: 1px solid rgba(255,255,255,0.15);
+    border-radius: 10px;
+    color: #fff;
+    font-size: 14px;
+    padding: 10px 12px;
+    outline: none;
+    width: 100%;
+    box-sizing: border-box;
+    font-family: inherit;
+
+    &:focus {
+      border-color: var(--accent, #F59E0B);
+    }
+
+    &::placeholder { color: rgba(255,255,255,0.3); }
+  }
+
+  textarea { resize: none; }
+}
+
+.emoji-input {
+  font-size: 22px !important;
+  text-align: center;
+  width: 60px !important;
+}
+
+.location-toggle {
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+
+  label:first-child { font-size: 11px; font-weight: 600; color: rgba(255,255,255,0.5); text-transform: uppercase; }
+}
+
+.toggle {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 24px;
+
+  input { display: none; }
+
+  .slider {
+    position: absolute;
+    inset: 0;
+    background: rgba(255,255,255,0.2);
+    border-radius: 12px;
+    transition: 0.2s;
+    cursor: pointer;
+
+    &::before {
+      content: '';
+      position: absolute;
+      width: 20px;
+      height: 20px;
+      left: 2px;
+      top: 2px;
+      background: #fff;
+      border-radius: 50%;
+      transition: 0.2s;
+    }
+  }
+
+  input:checked + .slider {
+    background: var(--accent, #F59E0B);
+    &::before { transform: translateX(20px); }
+  }
+}
+
+.location-fields {
+  background: rgba(255,255,255,0.04);
+  border-radius: 12px;
+  padding: 12px;
+  margin-bottom: 14px;
+}
+
+// ── Location search ───────────────────────────────────────────────────────────
+
+.search-row {
+  display: flex;
+  gap: 8px;
+  align-items: stretch;
+
+  input { flex: 1; }
+}
+
+.search-btn {
+  background: rgba(255,255,255,0.1);
+  border: 1px solid rgba(255,255,255,0.2);
+  color: #fff;
+  border-radius: 10px;
+  padding: 10px 14px;
+  cursor: pointer;
+  font-size: 14px;
+  flex-shrink: 0;
+
+  &:disabled { opacity: 0.4; }
+}
+
+.location-results {
+  margin-top: 6px;
+  background: #12122a;
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 10px;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.location-result {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 10px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+  cursor: pointer;
+
+  &:last-child { border-bottom: none; }
+  &:active { background: rgba(255,255,255,0.08); }
+}
+
+.result-name {
+  font-size: 13px;
+  color: #fff;
+  font-weight: 600;
+}
+
+.result-detail {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.selected-location {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px 12px;
+  background: rgba(255,255,255,0.06);
+  border-radius: 10px;
+  margin-top: 6px;
+  font-size: 13px;
+  color: rgba(255,255,255,0.85);
+
+  .coords {
+    font-size: 11px;
+    color: rgba(255,255,255,0.35);
+    font-family: monospace;
+  }
+}
+
+// ─────────────────────────────────────────────────────────────────────────────
+
+.sheet-actions {
+  display: flex;
+  gap: 10px;
+  padding: 12px 20px 20px;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  flex-shrink: 0;
+}
+
+.btn-save {
+  flex: 1;
+  padding: 14px;
+  background: var(--accent, #F59E0B);
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  font-size: 15px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.btn-delete {
+  padding: 14px 18px;
+  background: rgba(239,68,68,0.15);
+  color: #ef4444;
+  border: 1px solid rgba(239,68,68,0.3);
+  border-radius: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+}

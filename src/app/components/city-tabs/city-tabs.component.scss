@@ -1,0 +1,34 @@
+.city-tabs {
+  display: flex;
+  background: #1a1a2e;
+  border-bottom: 1px solid rgba(255,255,255,0.1);
+  padding: 0 4px;
+}
+
+.tab-btn {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  padding: 10px 4px 8px;
+  background: none;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s;
+  color: rgba(255,255,255,0.5);
+
+  &.active {
+    color: #fff;
+    border-bottom-color: var(--active-color, #fff);
+  }
+
+  &[data-city="travel"].active { --active-color: #8B5CF6; }
+  &[data-city="sf"].active { --active-color: #F59E0B; }
+  &[data-city="la"].active { --active-color: #F43F5E; }
+  &[data-city="sd"].active { --active-color: #0EA5E9; }
+}
+
+.tab-emoji { font-size: 18px; }
+.tab-label { font-size: 11px; font-weight: 600; letter-spacing: 0.5px; }

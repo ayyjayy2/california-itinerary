@@ -1,0 +1,9 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    // Personal travel app — open read/write for the trip document only
+    match /trips/{tripId} {
+      allow read, write: if true;
+    }
+  }
+}

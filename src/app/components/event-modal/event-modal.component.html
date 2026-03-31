@@ -1,0 +1,70 @@
+<div class="modal-backdrop" (click)="onBackdropClick($event)">
+  <div class="modal-sheet" [attr.data-city]="cityId">
+    <div class="sheet-handle"></div>
+    <div class="sheet-header">
+      <h2>{{ isNew ? 'Add Event' : 'Edit Event' }}</h2>
+      <button class="close-btn" (click)="close.emit()">✕</button>
+    </div>
+
+    <div class="form-body">
+      <div class="field-row">
+        <label>Time</label>
+        <input type="text" [(ngModel)]="form.time" placeholder="12:00 PM" />
+      </div>
+
+      <div class="field-row">
+        <label>Emoji</label>
+        <input type="text" [(ngModel)]="form.emoji" placeholder="📍" maxlength="2" class="emoji-input" />
+      </div>
+
+      <div class="field-row">
+        <label>Title</label>
+        <input type="text" [(ngModel)]="form.title" placeholder="Event title" />
+      </div>
+
+      <div class="field-row">
+        <label>Note</label>
+        <textarea [(ngModel)]="form.note" placeholder="Optional details..." rows="2"></textarea>
+      </div>
+
+      <div class="field-row location-toggle">
+        <label>Location</label>
+        <label class="toggle">
+          <input type="checkbox" [(ngModel)]="hasLocation" (change)="!hasLocation && clearLocation()" />
+          <span class="slider"></span>
+        </label>
+      </div>
+
+      <div class="location-fields" *ngIf="hasLocation">
+        <div class="field-row">
+          <label>Search location</label>
+          <div class="search-row">
+            <input type="text" [(ngModel)]="locationQuery"
+                   placeholder="e.g. Ferry Building, San Francisco"
+                   (input)="onLocationInput()" />
+            <button class="search-btn" (click)="searchLocation()" [disabled]="locationSearching">
+              {{ locationSearching ? '…' : '🔍' }}
+            </button>
+          </div>
+        </div>
+
+        <div class="location-results" *ngIf="locationResults.length > 0">
+          <div class="location-result" *ngFor="let r of locationResults" (click)="selectLocation(r)">
+            <span class="result-name">{{ r.name || r.display_name.split(',')[0] }}</span>
+            <span class="result-detail">{{ r.display_name }}</span>
+          </div>
+        </div>
+
+        <div class="selected-location" *ngIf="locationName && locationResults.length === 0">
+          <span>📍 {{ locationName }}</span>
+          <span class="coords">{{ (+locationLat).toFixed(4) }}, {{ (+locationLng).toFixed(4) }}</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="sheet-actions">
+      <button class="btn-delete" *ngIf="!isNew" (click)="onDelete()">Delete</button>
+      <button class="btn-save" (click)="onSave()">{{ isNew ? 'Add Event' : 'Save Changes' }}</button>
+    </div>
+  </div>
+</div>
