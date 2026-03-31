@@ -1,0 +1,157 @@
+.event-row {
+  display: flex;
+  gap: 12px;
+  padding: 0 16px;
+
+  &[data-city="travel"] { --dot-color: #8B5CF6; }
+  &[data-city="sf"]     { --dot-color: #F59E0B; }
+  &[data-city="la"]     { --dot-color: #F43F5E; }
+  &[data-city="sd"]     { --dot-color: #0EA5E9; }
+}
+
+.timeline-col {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 16px;
+  flex-shrink: 0;
+  padding-top: 20px;
+}
+
+.dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: var(--dot-color, #F59E0B);
+  flex-shrink: 0;
+  box-shadow: 0 0 0 3px rgba(255,255,255,0.1);
+}
+
+.line {
+  flex: 1;
+  width: 2px;
+  background: rgba(255,255,255,0.1);
+  margin-top: 4px;
+  min-height: 20px;
+}
+
+.event-body {
+  flex: 1;
+  min-width: 0;
+  padding-bottom: 12px;
+}
+
+.event-time {
+  font-size: 11px;
+  color: rgba(255,255,255,0.5);
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  margin-bottom: 6px;
+  padding-top: 16px;
+}
+
+// ── Event card ────────────────────────────────────────────────────────────────
+
+.event-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: rgba(255,255,255,0.07);
+  border: 1px solid rgba(255,255,255,0.1);
+  border-radius: 12px;
+  padding: 12px;
+  cursor: pointer;
+  transition: background 0.15s ease;
+
+  &:active { background: rgba(255,255,255,0.12); }
+}
+
+.event-emoji {
+  font-size: 22px;
+  line-height: 1;
+  flex-shrink: 0;
+}
+
+.event-info {
+  flex: 1;
+  min-width: 0;
+}
+
+.event-title {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  line-height: 1.3;
+}
+
+.event-note {
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  margin-top: 3px;
+  line-height: 1.4;
+}
+
+.event-location {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  margin-top: 4px;
+}
+
+// ── Bottom action row ─────────────────────────────────────────────────────────
+
+.event-actions {
+  display: flex;
+  align-items: center;
+  margin-top: 8px;
+}
+
+.delete-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 12px;
+  line-height: 1;
+  opacity: 0.3;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+  transition: opacity 0.15s ease;
+
+  &:active { opacity: 0.7; }
+}
+
+.visited-btn {
+  display: inline-flex;
+  margin-left: auto;
+  align-items: center;
+  gap: 4px;
+  padding: 3px 8px;
+  border-radius: 20px;
+  border: 1px solid rgba(255,255,255,0.2);
+  background: transparent;
+  cursor: pointer;
+  color: rgba(255,255,255,0.35);
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  transition: all 0.18s ease;
+  -webkit-tap-highlight-color: transparent;
+
+  .visited-check {
+    font-size: 11px;
+    line-height: 1;
+  }
+
+  &.is-visited {
+    background: var(--dot-color, #F59E0B);
+    border-color: var(--dot-color, #F59E0B);
+    color: #fff;
+    box-shadow: 0 0 8px rgba(255,255,255,0.15);
+  }
+}
+
+.edit-hint {
+  color: rgba(255,255,255,0.3);
+  font-size: 18px;
+  padding-left: 4px;
+  align-self: center;
+}

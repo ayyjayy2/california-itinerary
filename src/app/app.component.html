@@ -1,0 +1,32 @@
+<div class="app-frame">
+  <div class="phone-shell" [attr.data-city]="cityId">
+    <header class="app-header">
+      <div class="app-title">
+        <span class="title-emoji">🌴</span>
+        <span class="title-text">California Trip</span>
+        <span class="title-dates">Feb 28 – Mar 10</span>
+      </div>
+      <div class="sync-status"
+           [class.synced]="service.synced()"
+           [class.offline]="!service.online()"
+           [title]="service.synced() ? 'Synced to cloud' : 'Connecting...'">
+        <span class="sync-dot"></span>
+      </div>
+    </header>
+
+    <app-city-tabs></app-city-tabs>
+    <app-day-picker></app-day-picker>
+
+    <main class="app-main">
+      <app-travel-day *ngIf="isTravel && activeTab() === 'itinerary'"></app-travel-day>
+      <app-itinerary-view *ngIf="!isTravel && activeTab() === 'itinerary'"></app-itinerary-view>
+      <app-map-view *ngIf="activeTab() === 'map'"></app-map-view>
+    </main>
+
+    <app-bottom-nav
+      [activeTab]="activeTab()"
+      [cityId]="cityId"
+      (tabChange)="onTabChange($event)">
+    </app-bottom-nav>
+  </div>
+</div>

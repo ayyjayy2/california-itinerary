@@ -1,0 +1,10 @@
+<div class="day-picker" [attr.data-city]="cityId">
+  <button
+    *ngFor="let day of days; let i = index"
+    class="day-chip"
+    [class.active]="selectedIndex === i"
+    (click)="select(i)">
+    <span class="chip-label">{{ day.label }}</span>
+    <span class="chip-date">{{ day.date | slice:0:6 }}</span>
+  </button>
+</div>

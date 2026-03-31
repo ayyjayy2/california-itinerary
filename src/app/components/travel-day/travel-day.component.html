@@ -1,0 +1,39 @@
+<div class="travel-day">
+  <div class="flight-banner">
+    <div class="banner-top">
+      <div class="banner-left">
+        <span class="plane">✈️</span>
+        <div class="route">
+          <span class="airport">RDU</span>
+          <span class="arrow">→</span>
+          <span class="airport">CLT</span>
+          <span class="arrow">→</span>
+          <span class="airport">SFO</span>
+        </div>
+      </div>
+      <app-weather-badge [dateISO]="day.dateISO" class="banner-weather"></app-weather-badge>
+    </div>
+    <div class="flight-date">Saturday, Feb 28</div>
+    <div class="flight-meta">
+      <div class="leg">
+        <span class="leg-time">1:13 PM EST</span>
+        <span class="leg-sep">·</span>
+        <span class="leg-info">American Airlines</span>
+      </div>
+      <div class="leg">
+        <span class="leg-time">4:09 PM EST → 7:03 PM PST</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="timeline-container">
+    <app-event-card
+      *ngFor="let event of day.events; let i = index; let last = last"
+      [event]="event"
+      [index]="i"
+      [cityId]="'travel'"
+      [isLast]="last"
+      (edit)="onEdit($event)">
+    </app-event-card>
+  </div>
+</div>

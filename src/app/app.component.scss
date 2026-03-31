@@ -1,0 +1,97 @@
+// Frame fills exactly the visible viewport — no fixed pixel heights anywhere
+.app-frame {
+  height: 100dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #0a0a1a;
+  padding: 20px;
+
+  @media (max-width: 430px) {
+    padding: 0;   // phone: zero waste, edge to edge
+  }
+}
+
+// Shell stretches to fill the frame (minus its padding)
+.phone-shell {
+  width: min(390px, 100%);   // 390px on desktop, full-width on small screens
+  height: 100%;              // fills app-frame height dynamically
+  max-height: 844px;         // cap at iPhone size on large desktop screens
+  display: flex;
+  flex-direction: column;
+  background: #0f0f23;
+  border-radius: 40px;
+  overflow: hidden;
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.1), 0 30px 80px rgba(0,0,0,0.7);
+
+  @media (max-width: 430px) {
+    max-height: none;    // on a real phone, use the full height — no cap
+    border-radius: 0;
+    box-shadow: none;
+  }
+}
+
+.app-header {
+  background: #1a1a2e;
+  padding: calc(env(safe-area-inset-top, 0px) + 12px) 20px 12px;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-title {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex: 1;
+  min-width: 0;
+}
+
+.title-emoji { font-size: 20px; flex-shrink: 0; }
+
+.title-text {
+  font-size: 17px;
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.3px;
+  white-space: nowrap;
+}
+
+.title-dates {
+  font-size: 11px;
+  color: rgba(255,255,255,0.4);
+  font-weight: 500;
+  margin-left: auto;
+  padding-left: 8px;
+  white-space: nowrap;
+}
+
+.sync-status { flex-shrink: 0; }
+
+.sync-dot {
+  display: block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  transition: background 0.4s;
+
+  .synced & { background: #22c55e; }
+  .offline & { background: #f59e0b; }
+}
+
+// Main content grows to fill whatever remains between header and bottom nav
+.app-main {
+  flex: 1;
+  min-height: 0;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+
+  > * {
+    flex: 1;
+    min-height: 0;
+  }
+}
