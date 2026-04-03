@@ -1,3 +1,4 @@
+This is the FIRST prototype for a travel planning application.
 # 🌴 California Trip
 
 A personal travel itinerary app for a multi-city road trip through California (San Francisco, Los Angeles, and San Diego). Built with Angular and Firebase, it lets you browse a day-by-day schedule for each city, track visited spots, check weather, and explore all stops on an interactive map powered by the Google Maps API.
