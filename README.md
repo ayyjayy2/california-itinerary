@@ -12,6 +12,8 @@ A personal travel itinerary app for a multi-city road trip through California (S
 </p>
 
 ---
+This is the FIRST prototype for a travel planning application.
+---
 
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.1.4.
 
